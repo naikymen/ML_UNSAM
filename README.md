@@ -18,6 +18,8 @@ Las diapositivas están disponibles siguiendo los links que aparecen abajo.
 
 [Martes 9 de marzo](https://drive.google.com/file/d/1xXvc_jrgUXyAgCbXTO26PSla8CApclxY/view). Introducción a la materia.
 
+---
+
 ### Videos
 
 Videos de las clases virtuales
