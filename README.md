@@ -51,7 +51,9 @@ Una posibilidad para no tener que instalar código localmente es usar la platafo
 
 ### Este repositorio
 
-Los notebooks que forman parte del repositorio contienen las partes prácticas de las clases, tanto de los martes como de los jueves, y ejercicios.
+Los notebooks que forman parte del repositorio contienen las partes prácticas de las clases, tanto de los martes como de los jueves, y ejercicios. Vamos a ir subiendo los notebooks a medida que avancemos con las clases; siempre hay algo nuevo para agregar, y los estamos tweakeando todo el tiempo en función de las cosas que discutimos en clase. Por eso, no alcanza con que bajen el repo una sola vez. Lo más aconsejable es que clonen el repositorio (o lo [linkeen con Colab](https://drive.google.com/file/d/1QfcxTrgpElsFVkpLeImfKnxc2EJzZg2J/view)) y lo mantengan actualizado usando Git. 
+
+Si no están familiarizados con Git, les proponemos que lean o vean algunos tutoriales online. Acá les dejamos [una opción](https://www.youtube.com/watch?t=139&v=PvB5VFqJz0M&feature=youtu.be).
 
 
 #### Diapositivas de las clases
