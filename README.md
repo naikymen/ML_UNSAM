@@ -25,7 +25,7 @@ La materia se cursa los martes y jueves de 14h a 17h, a través de la plataforma
 
 ### Docentes
 
-* Rodrigo Díaz (profesor). [E-mail](mailto:rdiaz@unsam.edu.ar); [GitHub](https://github.com/exord); [Twitter](www.twitter.com/RDextrasolar); [LinkedIn](https://www.linkedin.com/in/rodrigofdiaz)
+* Rodrigo Díaz (profesor). [E-mail](mailto:rdiaz@unsam.edu.ar); [GitHub](https://github.com/exord); [Twitter](www.twitter.com/RDextrasolar); [LinkedIn](https://www.linkedin.com/in/rodrigofdiaz)</br><font size=2>(Para pedir puntos por la materia, puede ser que necesiten el [CV](docs/cv_RFDiaz_spa.pdf) del docente a cargo)</font>
 * Manuel Szewc (JTP). [E-mail](mailto:mszewc@unsam.edu.ar)
 * Luis Agustín Nieto (ayudante). [E-mail](mailto:agustinnieto@gmail.com)
 
