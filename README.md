@@ -21,6 +21,12 @@ A través de estos módulos, se avanza desde los fundamentos de las técnnicas, 
 
 La materia se cursa los martes y jueves de 14h a 17h, a través de la plataforma Meet (http://meet.google.com/xxh-eagv-wsf). Las clases son sincrónicas, y las grabaciones solo estás disponibles de manera excepcional y a pedido para aquello/as que no hayan podido asistir a una clase. No es posible realizar la cursada de manera 100% asincrónica.
 
+### Docentes
+
+* Rodrigo Díaz (profesor). [E-mail](mailto:rdiaz@unsam.edu.ar); [GitHub](https://github.com/exord); [Twitter](www.twitter.com/RDextrasolar); [LinkedIn](https://www.linkedin.com/in/rodrigofdiaz)
+* Manuel Szewc (JTP). [E-mail](mailto:mszewc@unsam.edu.ar)
+* Luis Agustín Nieto (ayudante). [E-mail](mailto:agustinnieto@gmail.com)
+
 ### Sesiones hands-on y código
 
 Las sesiones prácticas durante las clases requieren la ejecución de notebooks de Jupyter con python. Para esto existen dos opciones: o bien ejecutar el código de manera local, o hacerlo en un entorno de trabajo en la nube, [Google Colab](https://colab.research.google.com).
