@@ -17,6 +17,8 @@ La materia se organiza en cuatro grandes módulos:
 
 A través de estos módulos, se avanza desde los fundamentos de las técnnicas, pasando por algoritmos de complejidad creciente, hasta la presentación de técnicas de vanguardia que se utilizan hoy en día en distintos ámbitos del conocimiento y comerciales, y que constituyen algunas de las áreas más activas del campo.
 
+[Programa oficial de la materia](docs/Programa_ML.pdf)
+
 ### Horarios y modalidad
 
 La materia se cursa los martes y jueves de 14h a 17h, a través de la plataforma Meet (http://meet.google.com/xxh-eagv-wsf). Las clases son sincrónicas, y las grabaciones solo estás disponibles de manera excepcional y a pedido para aquello/as que no hayan podido asistir a una clase. No es posible realizar la cursada de manera 100% asincrónica.
