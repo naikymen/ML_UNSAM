@@ -2,7 +2,7 @@
 
 ## 1er cuatrimestre de 2021
 
-La materia se dicta en el marco del proyecto de Inteligencia Artificial Interdisciplinaria, como optativa de grado y de posgrado. Tiene una duración de 16 semanas, con una carga semanal de 6 horas (para un total de 96 horas).
+La materia se dicta en el marco del proyecto de Inteligencia Artificial Interdisciplinaria, como optativa de grado y de posgrado. Tiene una duración de 16 semanas, con una carga semanal de 6 horas (para un total de 96 horas). La materia empieza el 9 de marzo.
 
 ### Contenido de la materia
 
@@ -21,7 +21,7 @@ A través de estos módulos, se avanza desde los fundamentos de las técnnicas, 
 
 ### Horarios y modalidad
 
-La materia se cursa los martes y jueves de 14h a 17h, a través de la plataforma Meet (http://meet.google.com/xxh-eagv-wsf). Las clases son sincrónicas, y las grabaciones solo estás disponibles de manera excepcional y a pedido para aquello/as que no hayan podido asistir a una clase. No es posible realizar la cursada de manera 100% asincrónica.
+La materia se cursa los martes y jueves de 14h a 17h, a través de la plataforma Zoom (la conexión puede realizarse cliqueando [aquí](https://zoom.us/j/98381392066?pwd=TDRtQ3lpeDBLZ3VoUUU2T3paUjVNdz09)). Eventualmente, en caso de superar la capacidad de Zoom de 100 participantes, también transmitiremos la clase por otros medios. Las clases son sincrónicas, y las grabaciones solo estás disponibles de manera excepcional y a pedido para aquello/as que no hayan podido asistir a una clase. No es posible realizar la cursada de manera 100% asincrónica.
 
 ### Docentes
 
