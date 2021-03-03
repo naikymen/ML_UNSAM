@@ -2,26 +2,52 @@
 
 ## 1er cuatrimestre de 2021
 
-#### Instructivo Colab
+La materia se dicta en el marco del proyecto de Inteligencia Artificial Interdisciplinaria, como optativa de grado y de posgrado. Tiene una duración de 16 semanas, con una carga semanal de 6 horas (para un total de 96 horas).
+
+### Contenido de la materia
+
+La materia presenta un panorama introductorio del mundo del análisis de datos y de las técnicas de aprendizaje automático. Se presentan conceptos fundamentales del análisis de datos (análisis exploratorio de datos, pre-procesado, etc.) y algunos de los modelos más frecuentemente usados (regresión lineal, regresión polinomial), así como un amplio panorama de las técnicas y algoritmos de aprendizaje automático, junto con algunos de los conceptos centrales del área (*overfitting*, *cross-validation*, etc.). Una parte importante de la cursada consta de ejercicios donde lo/as estudiantes ganan experiencia práctica directa en la implementación de algoritmos. Para ello, se requiere que lo/as estudiantes ejecuten código y lleven adelante ejercicios de manera independiente [(ver más abajo)](#sesiones-hands-on-y-código).
+
+La materia se organiza en cuatro grandes módulos:
+
+1. Introducción al análisis de datos e inferencia estadística.
+2. Aprendizaje Automático.
+3. Redes neuronales y aprendizaje profundo.
+4. Temas adicionales.
+
+A través de estos módulos, se avanza desde los fundamentos de las técnnicas, pasando por algoritmos de complejidad creciente, hasta la presentación de técnicas de vanguardia que se utilizan hoy en día en distintos ámbitos del conocimiento y comerciales, y que constituyen algunas de las áreas más activas del campo.
+
+### Horarios y modalidad
+
+La materia se cursa los martes y jueves de 14h a 17h, a través de la plataforma Meet (http://meet.google.com/xxh-eagv-wsf). Las clases son sincrónicas, y las grabaciones solo estás disponibles de manera excepcional y a pedido para aquello/as que no hayan podido asistir a una clase. No es posible realizar la cursada de manera 100% asincrónica.
+
+### Sesiones hands-on y código
+
+Las sesiones prácticas durante las clases requieren la ejecución de notebooks de Jupyter con python. Para esto existen dos opciones: o bien ejecutar el código de manera local, o hacerlo en un entorno de trabajo en la nube, [Google Colab](https://colab.research.google.com).
+
+#### Local
+En el primer caso, se requiere tener instalado [`Pyhon 3`](https://www.python.org/) y los siguientes paquetes:
+* `numpy`
+* `scipy`
+* `matplotlib`
+* `pandas`
+* `scikit-learn`
+
+Para los módulos 3 y 4, también será necesaria la instalación de `keras`con el backend `Tensorflow`. Una elección interesante es la distribución de [Anaconda](https://www.anaconda.com/products/individual)
+
+Todos estos paquetes pueden instalrse fácilmente, una vez que `python` esté instalado, desde una terminal, a través de [`pip`](https://packaging.python.org/tutorials/installing-packages/#use-pip-for-installing) o `conda`.
+
+#### Google Colab
 
 Una posibilidad para no tener que instalar código localmente es usar la plataforma [Google Colab](https://colab.research.google.com). Acá hay unas [diapositivas](https://drive.google.com/file/d/1QfcxTrgpElsFVkpLeImfKnxc2EJzZg2J/view) con una corta introducción a Colab.
 
-### Notebooks
+### Este repositorio
 
-Los notebooks que forman parte del repositorio contienen las partes prácticas de las clases, tanto de los martes como de los jueves, y ejercicios. En principio, cada notebook de clase tiene asociado una serie de ejercicios.
+Los notebooks que forman parte del repositorio contienen las partes prácticas de las clases, tanto de los martes como de los jueves, y ejercicios.
 
-***
 
-### Diapositivas de las clases
+#### Diapositivas de las clases
 
-Las diapositivas están disponibles siguiendo los links que aparecen abajo.
-
-[Martes 9 de marzo](https://drive.google.com/file/d/1xXvc_jrgUXyAgCbXTO26PSla8CApclxY/view). Introducción a la materia.
-
----
-
-### Videos
-
-Videos de las clases virtuales
+Las diapositivas estarán disponibles en el [Wiki](https://github.com/IAI-UNSAM/ML_UNSAM/wiki) del repositorio.
 
 ---
