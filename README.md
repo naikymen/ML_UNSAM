@@ -29,6 +29,26 @@ La materia se cursa los martes y jueves de 14h a 17h, a través de la plataforma
 * Manuel Szewc (JTP). [E-mail](mailto:mszewc@unsam.edu.ar)
 * Luis Agustín Nieto (ayudante). [E-mail](mailto:agustinnieto@gmail.com)
 
+## Bibliografía
+
+Muchos de los temas que vamos a abordar están presentados, de una manera u otra en los libros de Bishop and Géron
+
+<img src="images/Geron_cover.png" alt="drawing" width="200"/>
+
+* [Hands-on Machine Learning with Scikit-Learn, Keras &  TensorFlow](https://www.amazon.com/Aur%C3%A9lien-G%C3%A9ron/dp/1492032646). O'Reilly Media; 2nd edition.
+
+<img src="images/Bishop_cover.png" alt="drawing" width="200"/>
+
+* [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/). Springer.
+
+El libro de Bishop puede descargarse gratuitamente.
+
+Además, recomendamos otras lecturas:
+* Gregory, P. Bayesian Logical Data Analysis for the Physical Sciences.
+* Jaynes, E.T. Probability Theory. The Logic of Science.
+* Frodesen, A. G., Skjeggestad, O., y Tofte, H. Probability and statistics in Particle Physics.
+ 
+
 ### Sesiones hands-on y código
 
 Las sesiones prácticas durante las clases requieren la ejecución de notebooks de Jupyter con python. Para esto existen dos opciones: o bien ejecutar el código de manera local, o hacerlo en un entorno de trabajo en la nube, [Google Colab](https://colab.research.google.com).
