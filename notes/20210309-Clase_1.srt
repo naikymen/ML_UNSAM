@@ -1,0 +1,40 @@
+1
+00:16:32,000 --> 00:16:35,000
+"Prize" es premio, precio es "price".
+
+2
+00:40:00,100 --> 00:41:00,100
+La idea es saber si sube o baja a tiempo t+1, dado el precio actual y el precio de otra cosa.
+
+3
+00:45:00,200 --> 00:46:00,200
+Los modelos son lineales, si son lineales en los parámetros (y no necesariamente en los X).
+
+4
+00:46:00,300 --> 00:46:01,300
+Ver: https://stats.stackexchange.com/a/148713/295029
+
+5
+00:55:01,400 --> 01:01:11,400
+-- problemas de mi conexion --
+
+6
+01:26:11,500 --> 01:27:11,500
+-- problemas de mi conexion --
+
+7
+01:30:11,600 --> 01:43:11,600
+Setup  para práctica en ipnb
+
+8
+01:45:11,700 --> 01:46:11,700
+Práctica en ipnb
+
+9
+01:46:11,800 --> 01:46:12,800
+"sofisticado" cuek
+
+10
+02:08:00,000 --> 02:09:00,000
+Explicacion correlacion de Pearson
+
