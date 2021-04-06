@@ -128,3 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /videos/*.mkv
+/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf
