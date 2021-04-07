@@ -23,6 +23,10 @@ A través de estos módulos, se avanza desde los fundamentos de las técnnicas, 
 
 La materia se cursa los martes y jueves de 14h a 17h, a través de la plataforma Zoom (la conexión puede realizarse cliqueando [aquí](https://zoom.us/j/98381392066?pwd=TDRtQ3lpeDBLZ3VoUUU2T3paUjVNdz09)). Eventualmente, en caso de superar la capacidad de Zoom de 100 participantes, también transmitiremos la clase por otros medios. Las clases son sincrónicas, y las grabaciones solo estás disponibles de manera excepcional y a pedido para aquello/as que no hayan podido asistir a una clase. No es posible realizar la cursada de manera 100% asincrónica.
 
+### Fechas de parciales
+
+1er parcial: 29 de abril de 2021 -- 
+
 ### Docentes
 
 * Rodrigo Díaz (profesor). [E-mail](mailto:rdiaz@unsam.edu.ar); [GitHub](https://github.com/exord); [Twitter](www.twitter.com/RDextrasolar); [LinkedIn](https://www.linkedin.com/in/rodrigofdiaz)</br><font size=2>(Para pedir puntos por la materia, puede ser que necesiten el [CV](docs/cv_RFDiaz_spa.pdf) del docente a cargo)</font>
