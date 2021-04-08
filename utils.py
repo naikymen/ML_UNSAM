@@ -9,6 +9,8 @@ import numpy as np
 import scipy.stats as st
 from scipy.linalg import cho_factor, cho_solve
 
+from matplotlib import pyplot as plt
+
 
 def hat_matrix(X, include_bias=True):
     """
@@ -69,3 +71,108 @@ def anova(t, y_base, y_model, nparam_base, nparam_models):
         print('New_{model:d} \tN-{npar:d} \tNew_{model:d} - Base \t{dpar:d} '
               '\t{fratio:.4f}\t{pvalue:.2e}'.format(**printdict))
     return
+
+
+def plot_clasi(x, t, ws, labels=[], xp=[-1., 1.], thr=[0, ], spines='zero',
+               equal=True, join_centers=False, margin=None):
+    """
+    Plot results of linear classification problems.
+
+    :param np.array x: Data matrix
+    :param np.array t: Label vector.
+    :param list or tuple ws: list with fitted paramter vector of models
+                             (excluding bias), one element per model
+    :param tuple xp: start and end x-coordinates of decision boundaries and
+                     margins.
+    :param list or tuple thr: threshold (-bias) values for each model.
+    :param str or None spines: whether the spines go through zero. If None,
+                               the default behaviour is used.
+    :param bool equal: whether to use equal axis aspect (default=True;
+                       recomended to see the parameter vector normal to
+                       boundary)
+    :param bool join_centers: whether to draw lines between classes centres.
+    :param None or tuple margin: tupler of booleans that define whether
+                                 to plot margin for each model being plotted.
+                                 If None, False for all models.
+    """
+    assert len(labels) == len(ws) or len(labels) == 0
+    assert len(ws) == len(thr)
+
+    if margin is None:
+        margin = [False] * len(ws)
+    else:
+        margin = np.atleast_1d(margin)
+    assert len(margin) == len(ws)
+
+    if len(labels) == 0:
+        labels = np.arange(len(ws)).astype('str')
+
+    # Agregemos el vector al plot
+    fig = plt.figure(figsize=(9, 7))
+    ax = fig.add_subplot(111)
+
+    xc1 = x[t == np.unique(t).max()]
+    xc2 = x[t == np.unique(t).min()]
+
+    ax.plot(*xc1.T, 'ob', mfc='None', label='C1')
+    ax.plot(*xc2.T, 'or', mfc='None', label='C2')
+
+    for i, w in enumerate(ws):
+
+        # Compute vector norm
+        wnorm = np.sqrt(np.sum(w**2))
+
+        # Ploteo vector de pesos
+        ax.quiver(0, thr[i]/w[1], w[0]/wnorm, w[1]/wnorm,
+                  color='C{}'.format(i+2), scale=10, label=labels[i],
+                  zorder=10)
+
+        # ploteo plano perpendicular
+        xp = np.array(xp)
+        yp = (thr[i] - w[0]*xp)/w[1]
+
+        plt.plot(xp, yp, '-', color='C{}'.format(i+2))
+
+        # Plot margin
+        if margin[i]:
+            for marg in [-1, 1]:
+                ym = yp + marg/w[1]
+                plt.plot(xp, ym, ':', color='C{}'.format(i+2))
+
+    if join_centers:
+        # Ploteo línea que une centros de los conjuntos
+        mu1 = xc1.mean(axis=1)
+        mu2 = xc2.mean(axis=1)
+        ax.plot([mu1[0], mu2[0]], [mu1[1], mu2[1]], 'o:k', mfc='None', ms=10)
+
+    ax.legend(loc=0, fontsize=12)
+    if equal:
+        ax.set_aspect('equal')
+
+    if spines is not None:
+        for a in ['left', 'bottom']:
+            ax.spines[a].set_position('zero')
+        for a in ['top', 'right']:
+            ax.spines[a].set_visible(False)
+
+    return
+
+
+def makew(fitter, norm=False):
+    """
+    Prepare parameter vector for an sklearn.liner_model predictor.
+
+    :param sklearn.LinearModel fitter: the model used to classify the data
+    :param bool norm: default: False; whether to normalize the parameter vector
+    """
+    # # Obtengamos los pesos
+    w = fitter.coef_.copy()
+
+    # # Incluye intercept
+    if fitter.fit_intercept:
+        w = np.hstack([fitter.intercept_.reshape(1, 1), w])
+
+    # # Normalizon
+    if norm:
+        w /= np.linalg.norm(w)
+    return w.T
