@@ -73,8 +73,8 @@ def anova(t, y_base, y_model, nparam_base, nparam_models):
     return
 
 
-def plot_clasi(x, t, ws, labels=[], xp=[-1., 1.], thr=[0, ], spines='zero',
-               equal=True, join_centers=False, margin=None):
+def plot_clasi(x, t, ws, labels=None, xp=[-1., 1.], thr=[0, ], spines='zero',
+               equal=True, margin=None, **kwargs):
     """
     Plot results of linear classification problems.
 
@@ -90,22 +90,29 @@ def plot_clasi(x, t, ws, labels=[], xp=[-1., 1.], thr=[0, ], spines='zero',
     :param bool equal: whether to use equal axis aspect (default=True;
                        recomended to see the parameter vector normal to
                        boundary)
-    :param bool join_centers: whether to draw lines between classes centres.
     :param None or tuple margin: tupler of booleans that define whether
                                  to plot margin for each model being plotted.
                                  If None, False for all models.
+                                 
+    Other params
+    ------------
+    :param bool join_centers: whether to draw lines between classes centres.
+    :param bool legend: whether to show the legend.
     """
-    assert len(labels) == len(ws) or len(labels) == 0
+    assert labels is None or len(labels) == len(ws)
     assert len(ws) == len(thr)
-
+    
+    join_centers = kwargs.pop('join_centers', True)
+    legend = kwargs.pop('legend', True)
+    
     if margin is None:
         margin = [False] * len(ws)
     else:
         margin = np.atleast_1d(margin)
     assert len(margin) == len(ws)
 
-    if len(labels) == 0:
-        labels = np.arange(len(ws)).astype('str')
+#     if len(labels) == 0:
+#         labels = np.arange(len(ws)).astype('str')
 
     # Agregemos el vector al plot
     fig = plt.figure(figsize=(9, 7))
@@ -122,16 +129,20 @@ def plot_clasi(x, t, ws, labels=[], xp=[-1., 1.], thr=[0, ], spines='zero',
         # Compute vector norm
         wnorm = np.sqrt(np.sum(w**2))
 
-        # Ploteo vector de pesos
-        ax.quiver(0, thr[i]/w[1], w[0]/wnorm, w[1]/wnorm,
-                  color='C{}'.format(i+2), scale=10, label=labels[i],
-                  zorder=10)
-
         # ploteo plano perpendicular
         xp = np.array(xp)
         yp = (thr[i] - w[0]*xp)/w[1]
 
-        plt.plot(xp, yp, '-', color='C{}'.format(i+2))
+        plt.plot(xp, yp, '-', color='C{}'.format(i+2), **kwargs)
+
+        # Ploteo vector de pesos
+        if labels is None:
+            ax.quiver(xp.mean(), yp.mean(), w[0]/wnorm, w[1]/wnorm,
+                      color='C{}'.format(i+2), scale=10, zorder=10, **kwargs)
+        else:
+            ax.quiver(xp.mean(), yp.mean(), w[0]/wnorm, w[1]/wnorm,
+                      color='C{}'.format(i+2), scale=10, label=labels[i],
+                      zorder=10, **kwargs)
 
         # Plot margin
         if margin[i]:
@@ -141,11 +152,13 @@ def plot_clasi(x, t, ws, labels=[], xp=[-1., 1.], thr=[0, ], spines='zero',
 
     if join_centers:
         # Ploteo línea que une centros de los conjuntos
-        mu1 = xc1.mean(axis=1)
-        mu2 = xc2.mean(axis=1)
+        mu1 = xc1.mean(axis=0)
+        mu2 = xc2.mean(axis=0)
         ax.plot([mu1[0], mu2[0]], [mu1[1], mu2[1]], 'o:k', mfc='None', ms=10)
 
-    ax.legend(loc=0, fontsize=12)
+    if legend:
+        ax.legend(loc=0, fontsize=12)
+    
     if equal:
         ax.set_aspect('equal')
 
