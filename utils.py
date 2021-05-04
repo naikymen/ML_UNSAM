@@ -189,3 +189,42 @@ def makew(fitter, norm=False):
     if norm:
         w /= np.linalg.norm(w)
     return w.T
+
+
+def plot_svm(svc, x, t, colorbar=False, **kwargs):
+    
+    plt.figure(figsize=(9, 7))
+
+    xx, yy = np.meshgrid(np.linspace(x[:, 0].min()-1, x[:, 0].max()+1, 200), 
+                         np.linspace(x[:, 1].min()-1, x[:, 1].max()+1, 200))
+
+    # evaluate decision function
+    Z = svc.decision_function(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+
+    # veamos la función de decisión y la frontera de decisión
+    pcm = plt.pcolormesh(xx, yy, -Z, cmap=plt.cm.RdBu_r, 
+                         shading='auto', **kwargs)
+
+    if colorbar:
+        plt.colorbar(label='Decision function')
+
+    plt.contour(xx, yy, -Z, 0, colors='0.25', zorder=1)
+    plt.contour(xx, yy, -Z, [-1, 1], colors='0.25', linestyles='dashed', zorder=1)
+
+    xc1 = x[t == np.unique(t.flatten()).max()]
+    xc2 = x[t == np.unique(t.flatten()).min()]
+
+    plt.plot(*xc1.T, 'ob', mfc='None', label='C1')
+    plt.plot(*xc2.T, 'or', mfc='None', label='C2')
+
+    # Get suppor vector
+    xsv = svc.support_vectors_
+    plt.plot(xsv[:, 0], xsv[:, 1], 'o', ms=12, mfc='None', mec='k', mew=2)
+
+        
+    plt.xticks(())
+    plt.yticks(())
+    plt.axis('tight')
+    
+    return
