@@ -1,0 +1,185 @@
+---
+title: An R Markdown document converted from "P/parcial1_1_2021.ipynb"
+output: html_document
+---
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+```
+
+### Ejercicio 1: Probabilidad e Inferencia Bayesiana
+
+<!-- Se desarrolla un test que se espera permita detectar la presencia superpoderes en una persona. 
+ -->
+Se cuenta con un proceso aleatorio del cual la única información que se tiene es que solo puede dar dos resultados: blanco (B) o negro (N).
+
+**a.** ¿Qué distribución de probabilidad podría usarse para describir el resultado de este experimento? Jusitifique brevemente. ¿Qué parámetro sería necesario inferir para tener un conocimiento acabado del proceso?
+
+Para caracterizarlo se lleva a cabo un experimento en el que el proceso se realiza tres veces, y se obtiene tres veces blanco (es decir, [B, B, B]).
+
+**b.** ¿Qué hipótesis tiene que incluir para poder describir este resultado con una función de distribución conocida? ¿De qué ley de probabilidad se trata?
+
+**c. Máxima verosimilitud.** Calcule el estimador de máxima verosimilitud del parámetro principal que describe el proceso. Interprete el resultado.
+
+**Inferencia bayesiana**. Se desea ahora realizar la inferencia bayesiana del parámetro en cuestión. En primer lugar, debe definirse un prior para este parámetro.
+
+**d.** Elija un prior y justifique su elección. ¿Hay alguna forma de expresar este prior que resulte particularmente útil para simplificar el problema? Explique por qué.
+
+**e.** Usando un prior uniforme, obtenga de manera analítica la distribución posterior del parámetro. Grafíquela junto con el prior.
+
+**f.** Se recibe información de otro experimento equivalente realizado en otro laboratorio, que concluye que el parámetro de interés tiene un valor medio y un desvío estándard (es decir, la raíz de la varianza) de $0.5 \pm 0.1$. Exprese esta información a través del prior del problema usando la función de distribución Beta, y vuelva a obtener de manera analítica el posterior. Compárelo con el del punto anterior.
+
+**Ayuda:** las expresiones para la media y la varianza de una distribución Beta se pueden encontrar en el apéndice B del Bishop 
+
+**g. Posterior numérico**. Ahora, utilice un prior normal, con el mismo valor medio y desvío estándard que en el del punto anterior. Se pide obtener la distribución posterior con este nuevo prior de forma numérica, y graficarla junto con el prior.
+
+**Ayuda**: no olvide la normalización.
+
+**h (optativo / por la gloria).** Usando la posterior del punto **e**, se busca realizar predicciones sobre futuras realizaciones del experimento: es decir, se quiere predecir el resultado de volver a realizar un conjunto de tres tiradas del experimento. 
+
+Desde el punto bayesiano, esto viene dado por la posterior predictiva, que puede pensarse como el valor medio de la verosimilitud con respecto a la posterior. Entonces, puede proceder de esta manera:
+
+1. Obtenga muestras de la posterior del parámetro obtenida en el punto **e**. Para esto, puede usarse el método `rvs`de las clases de `scipy`.
+2. Para cada muestra obtenida, calcule la verosimilitud para cada posible resultado del experimento (es decir, 0, 1, 2, o 3 éxitos). Acá se puede usar las facilidades de las clases del paquete `scipy.stats`, que permiten pasar un vector a los parámetros de las distribuciones.
+3. Promedie los resultados sobre todos los valores de la posterior.
+4. Grafique la PMF obtenida, que es la posterior predictiva.
+
+Discuta el resultado obtenido en vistas de lo obtenido en el punto **c.**
+
+****
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.metrics import mean_squared_error
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+from sklearn.model_selection import cross_val_score, cross_val_predict, GridSearchCV, train_test_split
+from sklearn.pipeline import Pipeline
+np.random.seed(42)
+```
+
+### Ejercicio 2: Regresión con modelos lineales
+
+El objetivo consiste en caracterizar un mapa topográfico. El siguiente dataset consiste en tres columnas: latitud, longitud y altura sobre nível del mar. Para su fácil uso, se transformaron la latitud y longitud en dos coordenadas entre $[0.0,1.0)$ y la altura se paso a unidades apropiadas. El objetivo es interpolar esta superficie y tener $y=f(x_1,x_2)$.
+
+```{python}
+data = np.loadtxt('dataset_regresion.txt')
+X=data[:,:2]
+t=data[:,2]
+```
+
+Por comodidad, le proveemos el verdadero mapa topográfico para que compare
+
+```{python}
+def tfunc(x1,x2):
+  r1 = np.sqrt(((x1-0.3)/0.4)**2+((x2-0.5)/0.3)**2)
+  r2 = np.sqrt(((x1-0.9)/0.2)**2+((x2-0.1)/0.7)**2)
+  return np.exp(-r1**2)+np.exp(-r2**2)
+x1=np.linspace(0.0,1.0,20)
+x2=np.linspace(0.0,1.0,10)
+z=tfunc(x1[np.newaxis,:],x2[:,np.newaxis])
+plt.contourf(x1,x2,z,cmap='gist_heat_r')
+plt.colorbar()
+plt.scatter(X[:,0],X[:,1],s=100*t,label='Altura')
+plt.legend(loc='upper right',framealpha=0.5)
+plt.xlabel('Latitud')
+plt.ylabel('Longitud')
+```
+
+**a.** Divida en conjunto de entrenamiento y test (80-20) y trabaje únicamente con el conjunto de entrenamiento.
+
+**b.** Realice un ajuste con base polinomial de grado 2 a todo el conjunto de entrenamiento, grafique los valores predichos e imprima el error del ajuste.
+Para graficar, utilice el siguiente código:
+
+```{python}
+x1=np.linspace(0.0,1.0,20)# grilla en latitud
+x2=np.linspace(0.0,1.0,10)# grilla en longitud
+X1, X2 = np.meshgrid(x1,x2)
+elements = np.c_[X1.ravel(),X2.ravel()]# junto todas las combinaciones posibles de mi grilla
+z=modelo.predict(elements).reshape(X1.shape)#aca va el modelo
+plt.contourf(x1,x2,z,cmap='gist_heat_r')
+plt.colorbar()
+plt.scatter(X_train[:,0],X_train[:,1],s=100*t_train,label='Altura')
+plt.legend(loc='upper right',framealpha=0.5)
+plt.xlabel('Latitud')
+plt.ylabel('Longitud')
+```
+
+**c.** Encuentre el mejor grado de polinomio entre 1 y 10 para ajustar los datos utilizando los métodos vistos en la materia. Grafique la performance en función del grado y la predicción del mejor modelo.
+
+**d.** Incorpore ahora regularizacion Ridge y encuentre nuevamente el mejor polinomio. Grafique la predicción del mejor modelo. Compare los coeficientes del modelo elegido con los de un ajuste no regularizado, y comente el resultado.
+
+**e.** Elija el mejor modelo y evalúelo en el conjunto de testeo. Además, prediga el valor de la altura para X = [1.1,0.5]. ¿Qué puede concluir?
+
+**f (optativo / por la gloria).** Utilice las siguientes funciones de base 
+
+$$\{1, e^{-(\vec{r}-\vec{r}_{1})^2},e^{-(\vec{r}-\vec{r}_{2})^2}, e^{-(\vec{r}-\vec{r}_{3})^2}, e^{-(\vec{r}-\vec{r}_{4})^2}\}$$
+
+con 
+
+$$\vec{r}_{1}=(0.25, 0.25)^{T}$$
+
+$$\vec{r}_{2}=(0.75, 0.25)^{T}$$
+
+$$\vec{r}_{3}=(0.75, 0.25)^{T}$$
+
+$$\vec{r}_{4}=(0.75, 0.75)^{T}$$
+
+Utilizando los datos de entrenamiento, encuentre los parametros de máxima verosimilitud para este modelo utilizando Regresión Ridge y grafique el resultado.
+
+****
+
+### Ejercicio 3: Clasificación con modelos lineales
+
+En el archivo `dataset_clasificacion.txt` se encuentran los datos a clasificar, en cada fila los dos primeros elementos son los datos y el último la clase a la que pertenece. 
+
+**a.** Analice los datos, dimensiones, balance de clases, etc. Grafique con histogramas y/o plots.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+#a)
+data = np.loadtxt('dataset_clasificacion.txt')
+X=data[:,:2]
+t=data[:,2]
+#...
+```
+
+**b.** Utilice un regresor logístico y un perceptrón para clasificar el conjunto de datos usando el 80% para entrenamiento y el 20% para testeo.
+
+Compare ambas implementaciones y explique cuál considera una mejor solución justificando mediante el uso de matrices de confusión y curvas PR/ROC.
+
+```{python}
+#b)
+```
+
+**c.** Grafique la frontera de decisión del perceptrón sobre el conjunto de datos.
+
+```{python}
+#c)
+```
+
+**d.** Para cada uno de estos requisitos, justifique si alguno de sus modelos pueden cumplirlo:
+
+1.  "Quiero encontrar al menos el 80% de los positivos de la muestra y estar seguro que al menos el 90% de mis detecciones positivas son correctas."
+2.  "Quiero que al menos el 95% de mis detecciones positvas sean correctas."
+
+```{python}
+#d)
+```
+
+**e.** Responda cuál o cuáles de los modelos, tal cual los entrenó, pueden responder a la siguiente pregunta: 
+
+"¿Qué puntos del conjunto de testeo tiene una probabilidad mayor a 90% de pertenecer a la clase 1?"
+
+1.   Perceptrón.
+2.   Regresión logística.
+2.   Perceptrón y Regresión logística.
+
+Justifique.
+
